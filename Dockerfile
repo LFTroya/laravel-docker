@@ -1,5 +1,7 @@
 FROM php:7.2-fpm
 
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
 # Set working directory
 WORKDIR /var/www
 
@@ -17,7 +19,14 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
+    gnupg \
+    lsb-release \
     iputils-ping
+
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+ENV SHIPPABLE_NODE_VERSION=11
+RUN . $HOME/.nvm/nvm.sh && nvm install $SHIPPABLE_NODE_VERSION && nvm alias default $SHIPPABLE_NODE_VERSION && nvm use default
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
