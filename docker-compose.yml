@@ -1,0 +1,49 @@
+version: '3'
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ccxc/php
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ../:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx/sites/:/etc/nginx/sites-available
+    networks:
+      - app-network
+
+  mariadb:
+    image: 'bitnami/mariadb:latest'
+    environment:
+      MARIADB_ROOT_PASSWORD: secret
+      MARIADB_ROOT_USER: root
+      MARIADB_DATABASE: example
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: admin
+    volumes:
+      - ~/.ltroya/mariadb:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
