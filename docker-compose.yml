@@ -23,8 +23,8 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - "80:80"
-      - "443:443"
+      - "8001:8001"
+      - "4433:4433"
     volumes:
       - ../:/var/www
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
@@ -36,13 +36,13 @@ services:
   mariadb:
     image: 'bitnami/mariadb:latest'
     environment:
-      MARIADB_ROOT_PASSWORD: secret
+      MARIADB_ROOT_PASSWORD: "o04U0d0Jz0R6CI"
       MARIADB_ROOT_USER: root
-      MARIADB_DATABASE: example
+      MARIADB_DATABASE: blog
       MARIADB_USER: admin
-      MARIADB_PASSWORD: admin
+      MARIADB_PASSWORD: "o04U0d0Jz0R6CI"
     volumes:
-      - ~/.ltroya/mariadb:/var/lib/mysql
+      - ~/.ccxc/mariadb:/var/lib/mysql
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     ports:
       - "3306:3306"
