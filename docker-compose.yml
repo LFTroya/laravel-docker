@@ -23,6 +23,7 @@ services:
   nginx:
     image: nginx:alpine
     ports:
+      - "80:80"
       - "8001:8001"
       - "4433:4433"
     volumes:
