@@ -52,6 +52,7 @@ services:
     networks:
       - app-network
 
+
 #  mariadb:
 #    image: 'bitnami/mariadb:latest'
 #    environment:
