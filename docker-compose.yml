@@ -9,6 +9,8 @@ volumes:
     driver: local
   postgres:
     driver: local
+  redis:
+    driver: local
 
 services:
   app:
@@ -65,5 +67,14 @@ services:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     ports:
       - "3306:3306"
+    networks:
+      - app-network
+
+  redis:
+    image: redis:5.0.7
+    volumes:
+      - /.ccxc/redis:/data
+    ports:
+      - "6379:6379"
     networks:
       - app-network

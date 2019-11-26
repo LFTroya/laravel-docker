@@ -22,6 +22,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends --no-install-su
     iputils-ping \
     libpq-dev
 
+# Redis
+RUN pecl install redis && rm -rf /tmp/pear
+
+RUN docker-php-ext-enable redis
+
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
 
 # Clear cache
