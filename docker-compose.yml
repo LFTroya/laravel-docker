@@ -54,21 +54,22 @@ services:
     networks:
       - app-network
 
-  mariadb:
-    image: 'bitnami/mariadb:latest'
-    environment:
-      MARIADB_ROOT_PASSWORD: "o04U0d0Jz0R6CI"
-      MARIADB_ROOT_USER: root
-      MARIADB_DATABASE: blog
-      MARIADB_USER: admin
-      MARIADB_PASSWORD: "o04U0d0Jz0R6CI"
-    volumes:
-      - ~/.ccxc/mariadb:/var/lib/mysql
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
-    ports:
-      - "3306:3306"
-    networks:
-      - app-network
+
+#  mariadb:
+#    image: 'bitnami/mariadb:latest'
+#    environment:
+#      MARIADB_ROOT_PASSWORD: "o04U0d0Jz0R6CI"
+#      MARIADB_ROOT_USER: root
+#      MARIADB_DATABASE: blog
+#      MARIADB_USER: admin
+#      MARIADB_PASSWORD: "o04U0d0Jz0R6CI"
+#    volumes:
+#      - ~/.ccxc/mariadb:/var/lib/mysql
+#      - ./mysql/my.cnf:/etc/mysql/my.cnf
+#    ports:
+#      - "3306:3306"
+#    networks:
+#      - app-network
 
   redis:
     image: redis:5.0.7
