@@ -1,3 +1,5 @@
-Start server enviroment
+# Docker for laravel
 
-`docker-compose up -d`
+#### Set up enviroment
+
+`docker-compose up -d app nginx postgres`
