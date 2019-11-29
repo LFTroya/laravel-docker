@@ -56,6 +56,11 @@ COPY --chown=www:www . /var/www
 
 USER www
 
+# Add alias
+RUN echo 'alias art="php artisan $1"' >> ~/.bashrc
+RUN echo 'alias p="vendor/bin/phpunit"' >> ~/.bashrc
+RUN echo 'alias pf="vendor/bin/phpunit --filter $1"' >> ~/.bashrc
+
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]
