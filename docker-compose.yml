@@ -46,7 +46,7 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: secret
-      POSTGRES_DB: kapa99
+      POSTGRES_DB: postgres
     volumes:
       - ~/.ccxc/postgres:/var/lib/postgresql/data
     ports:
